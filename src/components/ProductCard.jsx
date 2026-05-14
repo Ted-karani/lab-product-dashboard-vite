@@ -1,19 +1,37 @@
-import React from 'react';
-import styles from '../styles/ProductCard.module.css';
+import React from "react";
+import styles from "../styles/ProductCard.module.css";
+import Chip from "@mui/material/Chip";
+import Button from "@mui/material/Button";
 
-const ProductCard = ({ product }) => {
+function ProductCard({ product, onRemove }) {
+  const { id, name, price, inStock } = product;
+
   return (
-    <div className>
-      {/* TODO: Apply conditional class to <div> above for out-of-stock items */}
-      
-      {/* TODO: Display product name */}
+    // "outOfStockClass" is what the test checks for
+    <div className={`${styles.card} ${!inStock ? styles.outOfStockClass : ""}`}>
+      <h2 className={styles.name}>{name}</h2>
+      <p className={styles.price}>{price}</p>
 
-      {/* TODO: Display product price */}
+      <Chip
+        label={inStock ? "In Stock" : "Out of Stock"}
+        color={inStock ? "success" : "error"}
+        size="small"
+        style={{ marginBottom: "0.8rem" }}
+      />
 
-      {/* TODO: Show if the product is in stock or out of stock */}
-      
+      {/* Remove button — required by test */}
+      <div>
+        <Button
+          variant="outlined"
+          color="error"
+          size="small"
+          onClick={() => onRemove(id)}
+        >
+          Remove
+        </Button>
+      </div>
     </div>
   );
-};
+}
 
 export default ProductCard;
