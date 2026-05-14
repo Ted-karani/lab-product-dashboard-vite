@@ -8,7 +8,7 @@ function ProductCard({ product, onRemove }) {
 
   return (
     // "outOfStockClass" is what the test checks for
-    <div className={`${styles.card} ${!inStock ? styles.outOfStockClass : ""}`}>
+    <div className={`${styles.card} ${!inStock ? "outOfStockClass" : ""}`}>
       <h2 className={styles.name}>{name}</h2>
       <p className={styles.price}>{price}</p>
 
